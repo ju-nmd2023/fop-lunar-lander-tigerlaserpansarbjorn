@@ -12,7 +12,7 @@
   {
     "kind": 2,
     "language": "javascript",
-    "value": "function setup(){\r\n    createCanvas(800, 400);\r\n    background(52,61,70);\r\n}"
+    "value": ""
   },
   {
     "kind": 1,
@@ -22,6 +22,6 @@
   {
     "kind": 2,
     "language": "javascript",
-    "value": "function star(x, y, size){\r\n    push ();\r\n    noStroke();\r\n    fill (255);\r\n    circle (x, y, size);\r\n    pop ();\r\n}\r\n\r\nfunction draw(){\r\n    star(100, 110, 1);\r\n    star(200, 143, 2);\r\n    star(130, 175, 3);\r\n    star(220, 220, 2);\r\n    star(170, 300, 3);\r\n    star(153, 310, 2);\r\n    star(400, 110, 1);\r\n    star(330, 243, 2);\r\n    star(380, 155, 3);\r\n    star(375, 280, 2);\r\n    star(500, 320, 3);\r\n    star(423, 140, 2);\r\n}"
+    "value": "\r\n\r\n"
   }
 ]
