@@ -1,11 +1,15 @@
-let spacex = 10;
-let spacey = 10;
+let spacex = 0;
+let spacey = 0;
 
-function spaceShip() {
+function spaceShip(x, y) {
+    push();
+    translate (x, y);
+    rotate (PI);
     fill (100);
     triangle(spacex + 100, spacey, spacex, spacey + 100, spacex + 100, spacey + 300);
     triangle(spacex + 230, spacey, spacex + 330, spacey + 100, spacex + 230, spacey + 300);
     ellipse(spacex + 165, spacey + 65, 130);
+    pop();
 }
 
 //Stole from Garrit's site
@@ -37,6 +41,27 @@ for (let i = 0; i < 1000; i++) {
     starAlpha.push(alpha);
 }
 
+let spaceShipX = 700;
+let spaceShipY = 100;
+let velocity = 0.5;
+let acceleration = 0.8;
+const maxVelocity = 100;
+const landingVelocity = 20;
+
 function draw() {
     spaceBackground();
+    spaceShip(spaceShipX, spaceShipY);
+    
+    spaceShipY = spaceShipY + velocity;
+    if (keyIsDown(32)){
+        velocity = velocity - acceleration; 
+    }
+    else if(!keyIsDown(32) && velocity < maxVelocity){
+        velocity = velocity + acceleration;
+
+    }
+
+    if(spaceShipY > 800 && velocity > landingVelocity){
+        console.log("you suck!"); 
+    }
 }
