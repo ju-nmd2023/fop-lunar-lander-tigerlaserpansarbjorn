@@ -47,6 +47,7 @@ let velocity = 0.5;
 let acceleration = 0.8;
 const maxVelocity = 100;
 const landingVelocity = 20;
+const groundLevel = 800;
 
 function draw() {
     spaceBackground();
@@ -61,7 +62,7 @@ function draw() {
 
     }
 
-    if(spaceShipY > 800 && velocity > landingVelocity){
+    if(spaceShipY > groundLevel && velocity > landingVelocity){
         console.log("you suck!"); 
-    }
+    } 
 }
