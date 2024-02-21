@@ -1,17 +1,19 @@
 let spacex = 0;
 let spacey = 0;
-let state = "start";
+let state = "game";
 gameIsRunning = true;
 
 function startScreen(){
     spaceBackground();
     fill("white");
-    textSize(60);
-    text("Start", 200, 200);
+    textSize(100);
+    text("Start", 450, 500);
 }
 
 function gameScreen(){
     spaceBackground();
+    moonSurface();
+    shadow();
     spaceShip(spaceShipX, spaceShipY);
     
     spaceShipY = spaceShipY + velocity;
@@ -24,7 +26,7 @@ function gameScreen(){
     }
 
     if(spaceShipY > groundLevel && velocity > landingVelocity){
-        state = "result"; 
+        state = "game-over"; 
         gameIsRunning = false;
     }
 }
@@ -60,6 +62,24 @@ function spaceBackground(){
     pop();    
 }
 
+function moonSurface(){
+    push();
+    noStroke();
+    fill(184, 174, 163);
+    rect (0, 800, 2000, 1000);
+    pop();
+}
+
+function shadow(){
+    let r = 0.2*spaceShipY;
+    let shadowFill = 0.2 * spaceShipY;
+    push();
+    noStroke();
+    fill(0, 0, 0, shadowFill);
+    ellipse(535, 900, r, r/2);
+    pop();
+}
+
 
 
 let starX = [];
@@ -76,16 +96,16 @@ for (let i = 0; i < 1000; i++) {
     starAlpha.push(alpha);
 }
 
-let spaceShipX = 400; 
+let spaceShipX = 700; 
 let spaceShipY = 100;
 let velocity = 0.5;
 let acceleration = 0.8;
 const maxVelocity = 100;
-const landingVelocity = 20;
-const groundLevel = 800;
+const landingVelocity = 10;
+const groundLevel = 850;
 
 function mouseClicked(){
-    if(state === "result"){
+    if(state === "game-over"){
         state = "start";
     }
 }
@@ -103,7 +123,7 @@ function draw() {
    else if(state === "game"){
     gameScreen();
    }
-   else if(state === "result"){
+   else if(state === "game-over"){
     endScreen();
     spaceShipY = 0;
     velocity = 1;
