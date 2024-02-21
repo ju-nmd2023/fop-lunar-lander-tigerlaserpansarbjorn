@@ -1,5 +1,40 @@
 let spacex = 0;
 let spacey = 0;
+let state = "start";
+gameIsRunning = true;
+
+function startScreen(){
+    spaceBackground();
+    fill("white");
+    textSize(60);
+    text("Start", 200, 200);
+}
+
+function gameScreen(){
+    spaceBackground();
+    spaceShip(spaceShipX, spaceShipY);
+    
+    spaceShipY = spaceShipY + velocity;
+    if (keyIsDown(32)){
+        velocity = velocity - acceleration; 
+    }
+    else if(!keyIsDown(32) && velocity < maxVelocity){
+        velocity = velocity + acceleration;
+
+    }
+
+    if(spaceShipY > groundLevel && velocity > landingVelocity){
+        state = "result"; 
+        gameIsRunning = false;
+    }
+}
+
+function endScreen(){
+    spaceBackground();
+    fill("white");
+    textSize(60);
+    text("Game Over", 200, 200);
+}
 
 function spaceShip(x, y) {
     push();
@@ -22,7 +57,7 @@ function spaceBackground(){
         ellipse(starX[index], starY[index], 2);
         starAlpha[index] = starAlpha[index] + 0.008;
     }
-    pop();
+    pop();    
 }
 
 
@@ -41,7 +76,7 @@ for (let i = 0; i < 1000; i++) {
     starAlpha.push(alpha);
 }
 
-let spaceShipX = 700;
+let spaceShipX = 400; 
 let spaceShipY = 100;
 let velocity = 0.5;
 let acceleration = 0.8;
@@ -49,20 +84,28 @@ const maxVelocity = 100;
 const landingVelocity = 20;
 const groundLevel = 800;
 
+function mouseClicked(){
+    if(state === "result"){
+        state = "start";
+    }
+}
+
 function draw() {
-    spaceBackground();
-    spaceShip(spaceShipX, spaceShipY);
-    
-    spaceShipY = spaceShipY + velocity;
-    if (keyIsDown(32)){
-        velocity = velocity - acceleration; 
-    }
-    else if(!keyIsDown(32) && velocity < maxVelocity){
-        velocity = velocity + acceleration;
 
-    }
 
-    if(spaceShipY > groundLevel && velocity > landingVelocity){
-        console.log("you suck!"); 
-    } 
+   if (state === "start"){
+    startScreen();
+    gameIsRunning = true;
+    if(keyIsDown(32)){
+        state = "game";
+    }
+   }
+   else if(state === "game"){
+    gameScreen();
+   }
+   else if(state === "result"){
+    endScreen();
+    spaceShipY = 0;
+    velocity = 1;
+   }
 }
