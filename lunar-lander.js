@@ -1,7 +1,18 @@
+function setup(){
+    createCanvas(1200, 1200);
+}
+
 let spacex = 0;
 let spacey = 0;
-let state = "game-over";
+let state = "start";
 gameIsRunning = true;
+let spaceShipX = 700; 
+let spaceShipY = 100;
+let velocity = 0.5;
+let acceleration = 0.8;
+const maxVelocity = 100;
+const landingVelocity = 10;
+const groundLevel = 850;
 
 function startScreen(){
     spaceBackground();
@@ -29,28 +40,13 @@ function gameScreen(){
         state = "game-over"; 
         gameIsRunning = false;
     }
-    else if(spaceShipY > groundLevel && velocity < landingVelocity){
-        state = "you-won"; 
-        gameIsRunning = false;
-    }
 }
 
 function endScreen(){
     spaceBackground();
     fill("white");
-    textSize(100);
-    text("Game Over", 320, 500);
-   
-
-}
-
-function successScreen(){
-    spaceBackground();
-    fill("white");
-    textSize(100);
-    text("You won!", 360, 500);
-    
-
+    textSize(60);
+    text("Game Over", 200, 200);
 }
 
 function spaceShip(x, y) {
@@ -102,8 +98,8 @@ let starY = [];
 let starAlpha = [];
 
 for (let i = 0; i < 1000; i++) {
-    const x = Math.floor(Math.random() * width);
-    const y = Math.floor(Math.random() * height);
+    const x = Math.floor(Math.random() * 1200);
+    const y = Math.floor(Math.random() * 1200);
     const alpha = Math.random();
 
     starX.push(x);
@@ -111,16 +107,10 @@ for (let i = 0; i < 1000; i++) {
     starAlpha.push(alpha);
 }
 
-let spaceShipX = 700; 
-let spaceShipY = 100;
-let velocity = 0.5;
-let acceleration = 0.8;
-const maxVelocity = 100;
-const landingVelocity = 10;
-const groundLevel = 850;
+
 
 function mouseClicked(){
-    if(state === "game-over" || "you-won"){
+    if(state === "game-over"){
         state = "start";
     }
 }
@@ -140,11 +130,6 @@ function draw() {
    }
    else if(state === "game-over"){
     endScreen();
-    spaceShipY = 0;
-    velocity = 1;
-   }
-   else if(state === "you-won"){
-    successScreen();
     spaceShipY = 0;
     velocity = 1;
    }
