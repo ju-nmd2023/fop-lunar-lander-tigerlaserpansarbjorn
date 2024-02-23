@@ -1,0 +1,27 @@
+[
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "# Lunar Lander Game\r\n\r\n## Rules\r\n\r\n- Spaceship about to land on the moon\r\n- Spaceship can rotate to change direction with help of thrusters\r\n- The spaceship need to land upright and with limited velocity to not blow up on impact\r\n- If ship is destroyed, game is over\r\n\r\n## Build order\r\n\r\n1. Create space background\r\n2. Draw moon surface\r\n3. Draw spaceship\r\n4. Set low gravity to match one of the moon and make it affect the ship\r\n5. Give the ship thrusters to defy gravity\r\n6. Make a game over screen with restart function\r\n7. Create a start screen"
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "#### Step 0\r\n\r\nSet up canvas"
+  },
+  {
+    "kind": 2,
+    "language": "javascript",
+    "value": ""
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "#### Step 1\r\n\r\nCreate space background"
+  },
+  {
+    "kind": 2,
+    "language": "javascript",
+    "value": "\r\n\r\n"
+  }
+]
