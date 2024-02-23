@@ -1,5 +1,5 @@
 function setup(){
-    createCanvas(1200, 1200);
+    createCanvas(1100, 1000);
 }
 
 let spacex = 0;
@@ -40,6 +40,12 @@ function gameScreen(){
         state = "game-over"; 
         gameIsRunning = false;
     }
+
+    if(spaceShipY > groundLevel && velocity < landingVelocity){
+        state = "success"; 
+        gameIsRunning = false;
+    }
+
 }
 
 function endScreen(){
@@ -47,6 +53,13 @@ function endScreen(){
     fill("white");
     textSize(60);
     text("Game Over", 200, 200);
+}
+
+function successScreen(){
+    spaceBackground();
+    fill("white");
+    textSize(60);
+    text("You Won!", 200, 200);
 }
 
 function spaceShip(x, y) {
@@ -113,6 +126,9 @@ function mouseClicked(){
     if(state === "game-over"){
         state = "start";
     }
+    else if(state === "success"){
+        state = "start"
+    }
 }
 
 function draw() {
@@ -130,6 +146,11 @@ function draw() {
    }
    else if(state === "game-over"){
     endScreen();
+    spaceShipY = 0;
+    velocity = 1;
+   }
+   else if(state === "success"){
+    successScreen();
     spaceShipY = 0;
     velocity = 1;
    }
